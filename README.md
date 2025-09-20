@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://i.imgur.com/your-logo-here.png" alt="ThermalCore Labs Logo" width="150" height="150"> <h1>Thermal-Aware Spatio-Temporal Scheduler with Microwatt PowerPC Coprocessor</h1>
+  <img src="https://i.imgur.com/your-logo-here.png" alt="TestCore Logo" width="150" height="150"> <h1>Thermal-Aware Spatio-Temporal Scheduler with Microwatt PowerPC Coprocessor</h1>
   <p>
     <i>Revolutionizing data center efficiency by eliminating thermal hotspots with intelligent hardware-accelerated scheduling.</i>
   </p>
@@ -13,7 +13,8 @@
     <a href="https://github.com/ThermalCoreLabs/thermal-scheduler/issues">Request Feature</a>
   </p>
 </div>
-
+![Status](https://img.shields.io/badge/status-proposal-lightgrey)
+![License](https://img.shields.io/badge/license-MIT-blue)
 ---
 
 ## 🚀 Project Overview
@@ -24,11 +25,22 @@
 
 ### Problem Statement
 
-Modern data centers suffer from thermal hotspots that cause CPU throttling and reduce server performance by **15-30%**. Traditional OS schedulers like Linux CFS lack real-time thermal awareness, leading to uneven heat distribution and energy inefficiency.
+Modern data centers face a dual performance crisis:
 
-### Our Solution
+CPU Overhead from Software Scheduling: Traditional OS schedulers like Linux CFS consume 5-15% of CPU cycles just for scheduling decisions, with latencies ranging from 1-10ms. This overhead scales poorly - Google's research shows that software schedulers create performance jitter and waste valuable CPU cycles that could be used for actual computation.
+Thermal Management Blind Spot: Current schedulers lack real-time thermal awareness, creating hotspots that trigger CPU throttling and reduce performance by 15-30%. The thermal feedback loop is too slow (100ms+ response time) to prevent damage.
 
-We propose a dedicated **Microwatt PowerPC coprocessor** that implements thermal-aware spatio-temporal scheduling algorithms to optimize CPU task placement in real-time, preventing thermal hotspots while maintaining system performance.
+The Core Issue: Every scheduling decision made in software steals CPU cycles from your applications. In high-frequency trading, microservices, and HPC workloads, this overhead is devastating to performance.
+### Our Solution: Hardware-Accelerated Thermal Scheduling
+
+Inspired by Google's Coriolis research (achieving <1μs scheduling latency) and Microsoft's Catapult project (95% performance improvements), we propose a dedicated Microwatt PowerPC coprocessor that:
+
+Eliminates CPU Overhead: Moves all thermal scheduling logic to dedicated hardware, freeing up 5-15% of host CPU cycles for applications
+Achieves Sub-Millisecond Response: Hardware scheduling with <500μs latency vs 1-10ms software scheduling
+Real-time Thermal Awareness: Continuous thermal monitoring and prediction impossible with software-only solutions
+Predictable Performance: Eliminates scheduling jitter that plagues software schedulers
+
+Expected Impact: Following industry research patterns, we anticipate 20-30% overall system performance improvement through the combination of eliminated CPU scheduling overhead and optimized thermal management.
 
 ---
 
@@ -43,7 +55,7 @@ We propose a dedicated **Microwatt PowerPC coprocessor** that implements thermal
 
 ### Key Features
 
-* 🌡️ **Thermal Prediction:** ML-based temperature forecasting to anticipate hotspots.
+* 🌡️ **Thermal Prediction:** Spatio-temporal thermal-aware scheduling algorithm using Spatial and Temporal correlation.
 * 🗺️ **Spatial Optimization:** CPU topology-aware task placement for balanced heat distribution.
 * ⏱️ **Temporal Load Balancing:** Time-staggered execution to prevent sudden thermal spikes.
 * 🔌 **Hot-pluggable:** External coprocessor ensures zero impact on host CPU performance.
@@ -57,7 +69,7 @@ We propose a dedicated **Microwatt PowerPC coprocessor** that implements thermal
 
 The system comprises a Host Server interacting with a Microwatt Coprocessor to offload and optimize thermal-aware scheduling.
 
-![Thermal-Aware Spatio-Temporal Scheduler Architecture](https://i.imgur.com/h5HjT20.png) ### Data Flow
+![Thermal-Aware Spatio-Temporal Scheduler Architecture](https://ibb.co/Xr8mRzsS) ### Data Flow
 
 1.  **Collection:** Host gathers CPU temperature, power, and utilization data from `/sys/class/thermal/`, `/proc/stat`, and RAPL interfaces.
 2.  **Transmission:** Telemetry is sent to the Microwatt coprocessor via PCIe DMA (or UDP for prototype).
@@ -67,61 +79,17 @@ The system comprises a Host Server interacting with a Microwatt Coprocessor to o
 
 ---
 
-## 📋 Implementation Plan
-
-### Phase 1: Rapid Prototype (Week 1-2)
-
-* **Platform:** Arty A7 FPGA Development Board
-* **Communication:** UDP over Ethernet
-* **Goal:** End-to-end validation
-* **Deliverables:**
-    * ✅ Microwatt running on FPGA
-    * ✅ Host telemetry collection (Python)
-    * ✅ Basic thermal-aware scheduler (C on PowerPC)
-    * ✅ UDP communication working
-    * ✅ Live demo with temperature reduction
-
-### Phase 2: PCIe Integration (Week 3-4)
-
-* **Platform:** Xilinx VCU118 or AMD Alveo U50
-* **Communication:** PCIe Gen3 x16 with DMA
-* **Goal:** Production-ready low-latency implementation
-* **Deliverables:**
-    * [ ] PCIe endpoint with XDMA integration
-    * [ ] Linux kernel driver (`/dev/thermal_scheduler`)
-    * [ ] Ring buffer DMA for high-throughput
-    * [ ] MSI-X interrupts for <500μs latency
-    * [ ] VFIO userspace API
-
-### Phase 3: Advanced Algorithms (Week 5-6)
-
-* **Goal:** Sophisticated thermal modeling and ML integration
-* **Deliverables:**
-    * [ ] Predictive thermal modeling
-    * [ ] Online ML model training
-    * [ ] Multi-socket NUMA awareness
-    * [ ] Container/cgroup integration
-    * [ ] Performance benchmarking
-
----
-
 ## 🛠️ Technical Specifications
 
-### Hardware Requirements
-
-* **FPGA:** Xilinx 7-series or UltraScale+ (35K+ LUTs)
-* **Memory:** 2MB BRAM + 4GB DDR4 (optional)
-* **I/O:** PCIe Gen3 x16 or Gigabit Ethernet
-* **Power:** <15W additional consumption
-
 ### Performance Targets
+| Metric | Our Target | Current Software | Industry Research |
+| :--- | :--- | :--- | :--- |
+| **Scheduling Latency** | **<500µs** | 1-10ms (Linux CFS) | Google Coriolis: <1µs |
+| **CPU Scheduling Overhead**| **0%** | 5-15% CPU cycles | NVIDIA BlueField: 30% savings |
+| **Thermal Response Time** | **<1ms** | 100ms+ | Real-time prevention vs reaction |
+| **Performance Improvement**| **20-30%** | N/A | Microsoft Catapult: 95% gains |
+| **Thermal Hotspot Reduction**| **>25%** | N/A | Proactive vs reactive thermal mgmt |
 
-| Metric                       | Target     | Current Best (Linux CFS) |
-| :--------------------------- | :--------- | :----------------------- |
-| Scheduling Latency           | `<500μs`    | `~10ms`                  |
-| Thermal Hotspot Reduction    | `>25%`     | `N/A`                    |
-| CPU Performance Overhead     | `<2%`      | `N/A`                    |
-| Telemetry Processing Rate    | `1000Hz`   | `~100Hz`                 |
 
 ### Software Stack
 
@@ -131,23 +99,40 @@ The system comprises a Host Server interacting with a Microwatt Coprocessor to o
 * **APIs:** IOCTL, sysfs, netlink for control
 
 ---
+### 🧪 Testing & Validation
 
-## 📊 Data Structures
+* **Test Environment**
 
-### Telemetry Packet (Host → Coprocessor)
+    **Hardware:** Virtual machine or Dell PowerEdge R750 (2x Intel Xeon Gold 6338) (as per availibility)
+    **Workloads:** SPEC CPU2017, PARSEC, stress-ng
+    **Monitoring:** Intel PCM, ``perf``,
 
-```c
-struct __attribute__((packed)) telemetry_packet {
-    uint64_t timestamp_us;      // Microsecond timestamp
-    uint32_t cpu_id;            // Physical CPU identifier
-    float temperature_c;        // Core temperature (°C)
-    float power_w;             // Power consumption (W)
-    float utilization;         // CPU usage (0.0-1.0)
-    uint32_t runqueue_len;     // Waiting tasks
-    uint32_t context_switches; // Switch rate
-    uint32_t checksum;         // CRC32 integrity
-};
-```
+* **Benchmarking Plan** 
+
+  **Baseline:** Measure thermal distribution with Linux CFS
+  **Integration:** Deploy coprocessor and measure improvement
+  **Stress Testing:** Run thermal stress workloads
+  **Performance Impact:** Measure application throughput change
+  **Power Analysis:** Compare total system power consumption
+
+## 📖 References & Resources
+
+### 📄 Technical Documentation
+
+* [Microwatt GitHub Repository](https://github.com/antonblanchard/microwatt)
+* [OpenPOWER ISA Specification](https://openpowerfoundation.org/specifications/isa/)
+* [Linux Thermal Subsystem Documentation](https://www.kernel.org/doc/Documentation/thermal/index.html)
+* [PCIe DMA Programming Guide for FPGAs](https://www.xilinx.com/support/documentation/ip_documentation/xdma/v4_1/pg195-xdma.pdf)
+
+### 🔬 Related Work & Research
+* [Spatio-temporal thermal-aware scheduling for homogeneous high-performance computing datacenters](https://www.researchgate.net/publication/313406742_Spatio-temporal_thermal-aware_scheduling_for_homogeneous_high-performance_computing_datacenters)
+* [Intel RAPL: Power Monitoring Framework](https://www.intel.com/content/www/us/en/developer/articles/technical/intel-power-governor.html)
+* [Analysis of the Linux Completely Fair Scheduler (CFS)](https://www.kernel.org/doc/Documentation/scheduler/sched-design-CFS.txt)
+* [Academic Papers on Thermal-Aware Task Scheduling](https://scholar.google.com/scholar?q=thermal-aware+task+scheduling)
+* [Case Studies in FPGA-based System Acceleration](https://scholar.google.com/scholar?q=FPGA-based+system+acceleration+case+studies)
+
+### 📝 License & Open Source
+This project is released under the MIT License to encourage adoption and collaboration.
 <br>
 <div align="center">
 Built with ❤️ for better, more efficient computing

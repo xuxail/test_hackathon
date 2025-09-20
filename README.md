@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://i.imgur.com/your-logo-here.png" alt="TestCore Logo" width="150" height="150"> <h1>Thermal-Aware Spatio-Temporal Scheduler with Microwatt PowerPC Coprocessor</h1>
+  <img src=https://ibb.co/PKxgyqF alt="TestCore Logo" width="150" height="150"> <h1>Thermal-Aware Spatio-Temporal Scheduler with Microwatt PowerPC Coprocessor</h1>
   <p>
     <i>Revolutionizing data center efficiency by eliminating thermal hotspots with intelligent hardware-accelerated scheduling.</i>
   </p>
@@ -13,6 +13,7 @@
     <a href="https://github.com/ThermalCoreLabs/thermal-scheduler/issues">Request Feature</a>
   </p>
 </div>
+
 ![Status](https://img.shields.io/badge/status-proposal-lightgrey)
 ![License](https://img.shields.io/badge/license-MIT-blue)
 ---

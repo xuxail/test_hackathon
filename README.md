@@ -1,5 +1,5 @@
 <div align="center">
-  <img src=https://ibb.co/PKxgyqF alt="TestCore Logo" width="150" height="150"> <h1>Thermal-Aware Spatio-Temporal Scheduler with Microwatt PowerPC Coprocessor</h1>
+  <img src="https://i.postimg.cc/FHBrPm10/Gemini-Generated-Image-gbe1vlgbe1vlgbe1-removebg-preview.png" alt="TestCore Logo" width="150" height="150"> <h1>Thermal-Aware Spatio-Temporal Scheduler with Microwatt PowerPC Coprocessor</h1>
   <p>
     <i>Revolutionizing data center efficiency by eliminating thermal hotspots with intelligent hardware-accelerated scheduling.</i>
   </p>
@@ -70,7 +70,9 @@ Expected Impact: Following industry research patterns, we anticipate 20-30% over
 
 The system comprises a Host Server interacting with a Microwatt Coprocessor to offload and optimize thermal-aware scheduling.
 
-![Thermal-Aware Spatio-Temporal Scheduler Architecture](https://ibb.co/Xr8mRzsS) ### Data Flow
+![Thermal-Aware Spatio-Temporal Scheduler Architecture](https://i.postimg.cc/y6tTz35G/u-P-drawio.png) 
+
+### Data Flow
 
 1.  **Collection:** Host gathers CPU temperature, power, and utilization data from `/sys/class/thermal/`, `/proc/stat`, and RAPL interfaces.
 2.  **Transmission:** Telemetry is sent to the Microwatt coprocessor via PCIe DMA (or UDP for prototype).

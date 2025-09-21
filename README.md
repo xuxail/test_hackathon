@@ -5,12 +5,12 @@
   </p>
 
   <p align="center">
-    <a href="#about-the-project"><strong>Explore the project »</strong></a>
+    <a href="https://github.com/xuxail/test_hackathon"><strong>Explore the project »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/ThermalCoreLabs/thermal-scheduler/issues">Report Bug</a>
+    <a href="https://github.com/xuxail/test_hackathon/issues">Report Bug</a>
     ·
-    <a href="https://github.com/ThermalCoreLabs/thermal-scheduler/issues">Request Feature</a>
+    <a href="https://github.com/xuxail/test_hackathon/issues">Request Feature</a>
   </p>
 </div>
 
@@ -96,27 +96,27 @@ The system comprises a Host Server interacting with a Microwatt Coprocessor to o
 
 ### Software Stack
 
-* **Coprocessor OS:** Bare-metal C or Linux on Microwatt
-* **Host Integration:** Linux kernel module + userspace daemon
-* **Communication:** PCIe DMA or UDP/IP stack
-* **APIs:** IOCTL, sysfs, netlink for control
+* **Coprocessor OS:** Bare-metal C or Linux on Microwatt.
+* **Host Integration:** Linux kernel module + userspace daemon.
+* **Communication:** PCIe DMA or UDP/IP stack.
+* **APIs:** IOCTL, sysfs, netlink for control.
 
 ---
 ### 🧪 Testing & Validation
 
 * **Test Environment**
 
-    **Hardware:** Virtual machine or Dell PowerEdge R750 (2x Intel Xeon Gold 6338) (as per availibility)
-    **Workloads:** SPEC CPU2017, PARSEC, stress-ng
-    **Monitoring:** Intel PCM, ``perf``,
+   * **Hardware:** Virtual machine or Dell PowerEdge R750 (2x Intel Xeon Gold 6338) (as per availibility).
+   * **Workloads:** SPEC CPU2017, PARSEC, stress-ng.
+   * **Monitoring:** Intel PCM, ``perf``.
 
 * **Benchmarking Plan** 
 
-  **Baseline:** Measure thermal distribution with Linux CFS
-  **Integration:** Deploy coprocessor and measure improvement
-  **Stress Testing:** Run thermal stress workloads
-  **Performance Impact:** Measure application throughput change
-  **Power Analysis:** Compare total system power consumption
+  * **Baseline:** Measure thermal distribution with Linux CFS.
+  * **Integration:** Deploy coprocessor and measure improvement.
+  * **Stress Testing:** Run thermal stress workloads.
+  * **Performance Impact:** Measure application throughput change.
+  * **Power Analysis:** Compare total system power consumption.
 
 ## 📖 References & Resources
 

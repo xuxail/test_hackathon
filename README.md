@@ -28,9 +28,8 @@
 
 Modern data centers face a dual performance crisis:
 
-CPU Overhead from Software Scheduling: Traditional OS schedulers like Linux CFS consume 5-15% of CPU cycles just for scheduling decisions, with latencies ranging from 1-10ms. This overhead scales poorly - Google's research shows that software schedulers create performance jitter and waste valuable CPU cycles that could be used for actual computation.
-Thermal Management Blind Spot: Current schedulers lack real-time thermal awareness, creating hotspots that trigger CPU throttling and reduce performance by 15-30%. The thermal feedback loop is too slow (100ms+ response time) to prevent damage.
-
+CPU Overhead from Software Scheduling: Traditional OS schedulers like Linux CFS consume 5-15% of CPU cycles just for scheduling decisions, with latencies ranging from 1-10ms. This overhead scales poorly - Google's research shows that software schedulers create performance jitter and waste valuable CPU cycles that could be used for actual computation.  
+Thermal Management Blind Spot: Current schedulers lack real-time thermal awareness, creating hotspots that trigger CPU throttling and reduce performance by 15-30%. The thermal feedback loop is too slow (100ms+ response time) to prevent damage.  
 The Core Issue: Every scheduling decision made in software steals CPU cycles from your applications. In high-frequency trading, microservices, and HPC workloads, this overhead is devastating to performance.
 ### Our Solution: Hardware-Accelerated Thermal Scheduling
 
